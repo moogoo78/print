@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="kitchensink">
+  <head>
+    <meta charset="utf-8">
+
+    <title>test</title>
+
+    <script src="./lib/fabric.min.js"></script>
+
+  </head>
+  <body>
+
+
+    <div id="bd-wrapper" ng-controller="CanvasControls">
+      <h2><span>demo</span> &middot; Opacity Mouse Move</h2>
+
+      <canvas id="c" width="600" height="500"></canvas>
+
+<div>
+    <button id="apply-filter1">Apply filter 1</button>
+    <button id="remove-filter1">Remove filter 1</button>
+    <input type="text" size="15" id="color1" value="rgba(255,0,0,1)" />
+</div>
+
+<img id="tint" src="data:image/png;base64,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" />
+
+
+<script id="main">(function() {
+  var canvas = this.__canvas = new fabric.Canvas('c');
+
+  fabric.Object.prototype.transparentCorners = false;
+  fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
+
+
+  fabric.loadSVGFromURL('./assets/135.svg', function(objects) {
+
+    var obj = objects[0].scale(0.25);
+
+    canvas.centerObject(obj);
+    canvas.add(obj);
+
+
+
+  var color = document.getElementById('color1').value || 'rgba(255,255,0,0)';
+
+  var filter = new fabric.Image.filters.Tint({
+  color: color
+  });
+
+
+fabric.Image.fromURL(document.getElementById('tint').src, function (img) {
+    canvas.add(img);
+    img.center().setCoords();
+});
+    //var obj = canvas.item(0),
+
+
+/*
+    obj.clone(function(c) {
+      canvas.add(c.set({ left: 100, top: 100, angle: -15 }));
+    });
+    obj.clone(function(c) {
+      canvas.add(c.set({ left: 480, top: 100, angle: 15 }));
+    });
+    obj.clone(function(c) {
+      canvas.add(c.set({ left: 100, top: 400, angle: -15 }));
+    });
+    obj.clone(function(c) {
+      canvas.add(c.set({ left: 480, top: 400, angle: 15 }));
+    });
+*/
+    canvas.on('mouse:move', function(options) {
+
+      var p = canvas.getPointer(options.e);
+
+      canvas.forEachObject(function(obj) {
+        var distX = Math.abs(p.x - obj.left),
+            distY = Math.abs(p.y - obj.top),
+            dist = Math.round(Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2)));
+
+        obj.setOpacity(1 / (dist / 20));
+
+
+  obj.filters.push(filter);
+    obj.applyFilters(canvas.renderAll.bind(canvas));
+    //filters[id] = filter;
+
+
+      });
+
+      canvas.renderAll();
+    });
+  });
+})();
+
+
+  var canvas = window._canvas = new fabric.Canvas('c');
+fabric.Image.fromURL(document.getElementById('tint').src, function (img) {
+    canvas.add(img);
+    img.center().setCoords();
+});
+var filters = {};
+
+function setButtonState(apply, id) {
+   var btnApply = document.getElementById('apply-filter' + id),
+       btnRemove = document.getElementById('remove-filter' + id);
+    
+    btnApply.disabled = apply ? true : false;
+    btnRemove.disabled = apply ? false : true;
+}
+
+function removeFilter(id) {
+    var obj = canvas.item(0);
+    
+    setButtonState(false, id);
+    
+    fabric.util.removeFromArray(obj.filters, filters[id]);
+    obj.applyFilters(canvas.renderAll.bind(canvas));
+    
+    filters[id] = null;
+}
+
+function applyFilter(id) {
+    var obj = canvas.item(0),
+        color = document.getElementById('color' + id).value || 'rgba(0,0,0,0.5)';
+    
+    var filter = new fabric.Image.filters.Tint({
+        color: color
+    });
+    
+    setButtonState(true, id);
+    obj.filters.push(filter);
+    obj.applyFilters(canvas.renderAll.bind(canvas));
+    filters[id] = filter;
+}
+
+fabric.util.addListener(document.getElementById('apply-filter1'), 'click', function () {
+    applyFilter('1');
+fabric.util.addListener(document.getElementById('remove-filter1'), 'click', function () {
+    removeFilter('1')
+});
+});
+</script>
+
+    </div>
+
+
+    <script>
+(function() {
+  fabric.util.addListener(fabric.window, 'load', function() {
+    var canvas = this.__canvas || this.canvas,
+        canvases = this.__canvases || this.canvases;
+
+    canvas && canvas.calcOffset && canvas.calcOffset();
+
+    if (canvases && canvases.length) {
+      for (var i = 0, len = canvases.length; i < len; i++) {
+        canvases[i].calcOffset();
+      }
+    }
+  });
+})();
+</script>
+<input type="checkbox" id="filter" name="filter"> color</inpun>
+  </body>
+</html>
